@@ -20,13 +20,13 @@ int main() {
 
     switch (input) {
     case 'h':
-      lowerB = guess;
-      guess = average(guess, upperB);
+      lowerB = guess + 1;
+      guess = average(lowerB, upperB);
       break;
 
     case 'l':
-      upperB = guess;
-      guess = average(guess, lowerB);
+      upperB = guess - 1;
+      guess = average(upperB, lowerB);
       break;
 
     case 'r':
@@ -43,6 +43,13 @@ int main() {
       }
       break;
     }
+
+    if (lowerB > upperB) {
+      std::cout << "There is no number left for me to guess!\n";
+      std::cout << "The number to be guessed has to be between 1 and the "
+                   "number you've given me.\n";
+      end = true;
+    }
   }
 }
 
@@ -58,8 +65,7 @@ void startGame() {
     std::cin >> upperB;
   }
 
-  upperB++;
-  lowerB = 0;
+  lowerB = 1;
   guess = average(lowerB, upperB);
 }
 
